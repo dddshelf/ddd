@@ -1,6 +1,7 @@
 {
     "name": "carlosbuenosvinos/ddd",
-    "description": "DDD Helper classes",
+    "description": "Domain-Driven Design PHP Helper classes",
+    "homepage": "https://leanpub.com/ddd-in-php",
     "license": "MIT",
     "authors": [
         {
