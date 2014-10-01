@@ -3,9 +3,9 @@ carlosbuenosvinos/ddd
 
 DDD helper classes
 
-## Application Services
+# Application Services
 
-### Application Service Interface
+## Application Service Interface
 
 Consider an Application Service that registers a new user in your application. 
 
@@ -18,7 +18,7 @@ Consider an Application Service that registers a new user in your application.
             'carlos.buenosvinos@gmail.com',
             'thisisnotasecretpassword'
         )
-    )
+    );
 
     $newUserCreated = $response->getUser();
     //...
@@ -29,17 +29,19 @@ interface for User repositories.
 
     <?php
     
-    namespace Ddd\Application\Service\User;
+    namespace MyBC\Application\Service\User;
     
-    use Ddd\Domain\Model\User\User;
-    use Ddd\Domain\Model\User\UserAlreadyExistsException;
-    use Ddd\Domain\Model\User\UserRepository;
+    use MyBC\Domain\Model\User\User;
+    use MyBC\Domain\Model\User\UserAlreadyExistsException;
+    use MyBC\Domain\Model\User\UserRepository;
+    
+    use Ddd\Application\Service\ApplicationService;
     
     /**
      * Class SignInUserService
-     * @package Ddd\Application\Service\User
+     * @package MyBC\Application\Service\User
      */
-    class SignInUserService implements Service
+    class SignInUserService implements ApplicationService
     {
         /**
          * @var UserRepository
@@ -97,7 +99,7 @@ the command pattern.
         public function execute($request = null);
     }
 
-## Transactions ##
+## Transactions
 
 Application Services should manage transactions when dealing with database persistence
 strategies. In order to manage it cleanly, I provide an Application Service decorator
@@ -107,14 +109,30 @@ The decorator is the ```Ddd\Application\Service\TransactionalApplicationService`
 In order to create one, you need the non transactional Application Service and a Transactional
 Session. We provide different types of Transactional Sessions. See how to do it with Doctrine.
 
-## Doctrine Transactional Application Services  ##
+### Doctrine Transactional Application Services
+
+For the Doctrine Transactional Session, pass the EntityManager instance.
 
     /** @var EntityManager $em */
     $txSignInUserService = new TransactionalApplicationService(
         new SignInUserService(
             $em->getRepository('MyBC\Domain\Model\User\User')
         ),
-        $em
+        new DoctrineSession($em)
     );
     
-    $response = $txSignInUserService->execute();
+    $response = $txSignInUserService->execute(
+        new SignInUserRequest(
+            'carlos.buenosvinos@gmail.com',
+            'thisisnotasecretpassword'
+        )
+    );
+    
+    $newUserCreated = $response->getUser();
+    //...
+
+As you can see, the use case creation and execution is the same as the non transactional,
+the only difference is the decoration with the Transactional Application Service.
+
+As a collateral benefit, the Doctrine Session manages internally the flush method, so you
+don't need to add a flush in your Domain neither your infrastructure.
