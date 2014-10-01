@@ -2,6 +2,10 @@
 
 namespace Ddd\Infrastructure\Application\Service;
 
+/**
+ * Class DummySessionTest
+ * @package Ddd\Infrastructure\Application\Service
+ */
 class DummySessionTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -10,11 +14,10 @@ class DummySessionTest extends \PHPUnit_Framework_TestCase
     public function methodIsExecuted()
     {
         $expectedValue = new \stdClass();
-        $dummySession = new DummySession();
 
         $this->assertSame(
             $expectedValue,
-            $dummySession->executeAtomically(
+            (new DummySession())->executeAtomically(
                 function() use ($expectedValue) {
                     return $expectedValue;
                 }
