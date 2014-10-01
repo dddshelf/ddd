@@ -1,0 +1,15 @@
+{
+    "name": "carlosbuenosvinos/ddd",
+    "description": "DDD Helper classes",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Carlos Buenosvinos",
+            "email": "carlos.buenosvinos@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"Ddd\\": "src/"}
+    },
+    "require": {}
+}
