@@ -32,7 +32,7 @@ class TransactionalApplicationService implements ApplicationService
      * @param $request
      * @return mixed
      */
-    public function execute($request)
+    public function execute($request = null)
     {
         if (empty($this->service)) {
             throw new \LogicException('A use case must be specified');
