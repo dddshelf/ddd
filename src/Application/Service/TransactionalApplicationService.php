@@ -6,7 +6,7 @@ namespace Ddd\Application\Service;
  * Class TransactionalService
  * @package Ddd\Application\Service
  */
-class TransactionalService
+class TransactionalApplicationService implements ApplicationService
 {
     /**
      * @var TransactionalSession
@@ -18,12 +18,20 @@ class TransactionalService
      */
     private $service;
 
+    /**
+     * @param ApplicationService $service
+     * @param TransactionalSession $session
+     */
     public function __construct(ApplicationService $service, TransactionalSession $session)
     {
         $this->session = $session;
         $this->service = $service;
     }
 
+    /**
+     * @param $request
+     * @return mixed
+     */
     public function execute($request)
     {
         if (empty($this->service)) {
