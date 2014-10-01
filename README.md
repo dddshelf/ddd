@@ -134,5 +134,5 @@ For the Doctrine Transactional Session, pass the EntityManager instance.
 As you can see, the use case creation and execution is the same as the non transactional,
 the only difference is the decoration with the Transactional Application Service.
 
-As a collateral benefit, the Doctrine Session manages internally the flush method, so you
-don't need to add a flush in your Domain neither your infrastructure.
+As a collateral benefit, the Doctrine Session manages internally the ```flush``` method, so you
+don't need to add a ```flush``` in your Domain neither your infrastructure.
