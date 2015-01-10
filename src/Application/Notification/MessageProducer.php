@@ -4,6 +4,8 @@ namespace Ddd\Application\Notification;
 
 interface MessageProducer
 {
+    public function open($exchangeName);
+
     /**
      * @param $exchangeName
      * @param string $notificationMessage
@@ -13,5 +15,6 @@ interface MessageProducer
      * @return
      */
     public function send($exchangeName, $notificationMessage, $notificationType, $notificationId, \DateTime $notificationOccurredOn);
+
     public function close($exchangeName);
 }
