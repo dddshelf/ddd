@@ -15,17 +15,12 @@ class DoctrinePublishedMessageTracker extends EntityRepository implements Publis
      */
     public function mostRecentPublishedMessageId($aTypeName)
     {
-        $connection = $this->getEntityManager()->getConnection();
-        $mostRecentId = $connection->fetchColumn(
-            'SELECT most_recent_published_message_id FROM event_published_message_tracker WHERE type_name = ?',
-            [$aTypeName]
-        );
-
-        if (!$mostRecentId) {
+        $messageTracked = $this->findOneByTypeName($aTypeName);
+        if (!$messageTracked) {
             return null;
         }
 
-        return $mostRecentId;
+        return $messageTracked->mostRecentPublishedMessageId();
     }
 
     /**
