@@ -3,9 +3,9 @@
 namespace Ddd\Infrastructure\Application\Notification;
 
 use Ddd\Application\Notification\PublishedMessageTracker;
+use Ddd\Domain\Event\PublishedMessage;
 use Ddd\Domain\Event\StoredEvent;
 use Doctrine\ORM\EntityRepository;
-use Lw\Infrastructure\Application\PublishedMessage;
 
 class DoctrinePublishedMessageTracker extends EntityRepository implements PublishedMessageTracker
 {
