@@ -1,6 +1,6 @@
 <?php
 
-namespace Lw\Infrastructure\Application;
+namespace Ddd\Domain\Event;
 
 class PublishedMessage
 {

@@ -38,11 +38,17 @@ class StoredEvent implements DomainEvent
         $this->occurredOn = $anOccurredOn;
     }
 
+    /**
+     * @return string
+     */
     public function eventBody()
     {
         return $this->eventBody;
     }
 
+    /**
+     * @return int
+     */
     public function eventId()
     {
         return $this->eventId;
