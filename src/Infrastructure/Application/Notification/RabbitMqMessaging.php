@@ -32,7 +32,7 @@ abstract class RabbitMqMessaging
         $this->channels[$connectionKey] = $channel;
     }
 
-    protected function open($exchangeName)
+    public function open($exchangeName)
     {
 
     }
