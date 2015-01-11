@@ -6,30 +6,27 @@ use PhpAmqpLib\Connection\AMQPConnection;
 
 abstract class RabbitMqMessaging
 {
-    protected $connections;
-    protected $channels;
+    protected $connection;
+    protected $channel;
 
     public function __construct(AMQPConnection $aConnection)
     {
-        $this->channels = [];
-        $this->connections = [];
+        $this->connection = $aConnection;
+        $this->channel = null;
     }
 
     private function connect($exchangeName)
     {
-        $connectionKey = $exchangeName;
-        if (isset($this->connections[$connectionKey])) {
+        if (null !== $this->channel) {
             return;
         }
 
-        $connection = new AMQPConnection('localhost', 5672, 'guest', 'guest');
-        $channel = $connection->channel();
+        $channel = $this->connection->channel();
         $channel->exchange_declare($exchangeName, 'fanout', false, true, false);
         $channel->queue_declare($exchangeName, false, true, false, false);
         $channel->queue_bind($exchangeName, $exchangeName);
 
-        $this->connections[$connectionKey] = $connection;
-        $this->channels[$connectionKey] = $channel;
+        $this->channel = $channel;
     }
 
     public function open($exchangeName)
@@ -41,12 +38,12 @@ abstract class RabbitMqMessaging
     {
         $this->connect($exchangeName);
 
-        return $this->channels[$exchangeName];
+        return $this->channel;
     }
 
     public function close($exchangeName)
     {
-        $this->channels[$exchangeName]->close();
-        $this->connections[$exchangeName]->close();
+        $this->channel->close();
+        $this->connection->close();
     }
 }
