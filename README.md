@@ -1,7 +1,20 @@
 carlosbuenosvinos/ddd
 =====================
 
-DDD helper classes
+This library will help you with typical DDD scenarios, for now:
+* Application Services Interface
+* Transactional Application Services with Doctrine and ADODb
+* Domain Event Interface
+* Event Store Interface
+* Event Store Doctrine Implementation
+* Domain Event Publishing Service
+* Messaging Producer Interface
+* Messaging Producer RabbitMQ Implementation
+
+# Sample Projects
+
+There are some projects developed using carlosbuenosvinos/ddd library. Check some of them to see how to use it:
+* [https://github.com/dddinphp/last-wishes](Last Wishes)
 
 # Application Services
 
