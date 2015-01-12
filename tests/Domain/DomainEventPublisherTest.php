@@ -17,7 +17,7 @@ class DomainEventPublisherTest extends \PHPUnit_Framework_TestCase
 
     private function subscribe($subscriber)
     {
-        DomainEventPublisher::instance()->subscribe($subscriber);
+        return DomainEventPublisher::instance()->subscribe($subscriber);
     }
 
     private function publish($domainEvent)
@@ -46,6 +46,23 @@ class DomainEventPublisherTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertFalse($subscriber->isHandled);
         $this->assertNull($subscriber->domainEvent);
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldUnsubscribeSubscriber()
+    {
+        $subscriberId = $this->subscribe($subscriber = new SpySubscriber('test-event'));
+        $this->unsubscribe($subscriberId);
+        $this->publish(new FakeDomainEvent('test-event'));
+
+        $this->assertEventNotHandled($subscriber);
+    }
+
+    private function unsubscribe($id)
+    {
+        DomainEventPublisher::instance()->unsubscribe($id);
     }
 }
 
