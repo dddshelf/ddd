@@ -14,6 +14,8 @@ class DomainEventPublisher
      */
     private static $instance = null;
 
+    private $id = 0;
+
     public static function instance()
     {
         if (null === static::$instance) {
@@ -35,7 +37,16 @@ class DomainEventPublisher
 
     public function subscribe($aDomainEventSubscriber)
     {
-        $this->subscribers[] = $aDomainEventSubscriber;
+        $id = $this->id;
+        $this->subscribers[$id] = $aDomainEventSubscriber;
+        $this->id++;
+
+        return $id;
+    }
+
+    public function unsubscribe($id)
+    {
+        unset($this->subscribers[$id]);
     }
 
     public function publish(DomainEvent $aDomainEvent)
