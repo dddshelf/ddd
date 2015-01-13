@@ -16,7 +16,7 @@ This library will help you with typical DDD scenarios, for now:
 # Sample Projects
 
 There are some projects developed using carlosbuenosvinos/ddd library. Check some of them to see how to use it:
-* [https://github.com/dddinphp/last-wishes](Last Wishes)
+* [Last Wishes](https://github.com/dddinphp/last-wishes): Actions to run, such as tweet, send emails, etc. in case anything happen to you.
 
 # Application Services
 
