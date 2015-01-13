@@ -1,6 +1,8 @@
 carlosbuenosvinos/ddd
 =====================
 
+[![Build Status](https://secure.travis-ci.org/carlosbuenosvinos/ddd.svg?branch=master)](http://travis-ci.org/carlosbuenosvinos/ddd)
+
 This library will help you with typical DDD scenarios, for now:
 * Application Services Interface
 * Transactional Application Services with Doctrine and ADODb
