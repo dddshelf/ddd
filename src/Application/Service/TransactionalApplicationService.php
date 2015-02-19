@@ -42,6 +42,6 @@ class TransactionalApplicationService implements ApplicationService
             return $this->service->execute($request);
         };
 
-        return $this->session->executeAtomically($operation->bindTo($this));
+        return $this->session->executeAtomically($operation);
     }
 }
