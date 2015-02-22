@@ -1,6 +1,6 @@
 {
     "name": "carlosbuenosvinos/ddd",
-    "description": "Domain-Driven Design PHP Helper classes",
+    "description": "Domain-Driven Design PHP helper classes (Application Services, Transactions, Domain Events, etc.",
     "homepage": "https://leanpub.com/ddd-in-php",
     "license": "MIT",
     "authors": [
@@ -13,9 +13,15 @@
     "autoload": {
         "psr-4": {"Ddd\\": "src/"}
     },
-    "require": {},
+    "require": {
+        "jms/serializer": "0.*"
+    },
     "require-dev": {
         "phpunit/phpunit": "4.2.*"
+    },
+    "suggest": {
+        "doctrine/orm": "It allows Transactional Application Services and/or Domain Events persisted using Doctrine",
+        "videlalvaro/php-amqplib": "It allows Domain Events notification using RabbitMQ"
     },
     "config": {
         "bin-dir": "bin/",
