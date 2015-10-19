@@ -2,6 +2,8 @@
 
 namespace Ddd\Domain;
 
+use Ddd\Domain\Event\PublishableDomainEvent;
+
 class PersistDomainEventSubscriber implements DomainEventSubscriber
 {
     /**
@@ -21,6 +23,6 @@ class PersistDomainEventSubscriber implements DomainEventSubscriber
 
     public function isSubscribedTo($aDomainEvent)
     {
-        return true;
+        return $aDomainEvent instanceof PublishableDomainEvent;
     }
 }
