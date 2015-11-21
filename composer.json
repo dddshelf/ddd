@@ -23,7 +23,7 @@
         "react/event-loop": "^0.4.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "^5.0"
+        "phpunit/phpunit": "^4.8.18"
     },
     "suggest": {
         "doctrine/orm": "It allows Transactional Application Services and/or Domain Events persisted using Doctrine",
