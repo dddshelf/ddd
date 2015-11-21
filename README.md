@@ -6,6 +6,8 @@ carlosbuenosvinos/ddd
 This library will help you with typical DDD scenarios, for now:
 * Application Services Interface
 * Transactional Application Services with Doctrine and ADODb
+* Data Transformers Interface
+* No Transformer Data Transformers
 * Domain Event Interface
 * Event Store Interface
 * Event Store Doctrine Implementation
