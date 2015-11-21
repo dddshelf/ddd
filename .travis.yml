@@ -7,6 +7,7 @@ php:
     - hhvm
 
 before_script:
+    - echo "extension = amqp.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
     - curl -s http://getcomposer.org/installer | php
     - php composer.phar install
 

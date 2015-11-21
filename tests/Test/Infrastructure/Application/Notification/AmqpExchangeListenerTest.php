@@ -25,7 +25,7 @@ class AmqpExchangeListenerTest extends PHPUnit_Framework_TestCase
             ->build();
 
         $storedEvent = new StoredEvent(
-            TestEvent::class,
+            'Ddd\Test\Infrastructure\Application\Notification\TestEvent',
             new DateTime(),
             $serializer->serialize(new TestEvent(), 'json')
         );
