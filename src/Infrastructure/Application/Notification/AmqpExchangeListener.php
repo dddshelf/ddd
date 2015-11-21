@@ -65,7 +65,7 @@ abstract class AmqpExchangeListener
         while ($envelope = $this->queue->get()) {
             $storedEvent = $this->serializer->deserialize(
                 $envelope->getBody(),
-                StoredEvent::class,
+                'Ddd\Domain\Event\StoredEvent',
                 'json'
             );
 
