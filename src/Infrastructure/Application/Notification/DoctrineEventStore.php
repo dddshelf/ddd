@@ -41,7 +41,12 @@ class DoctrineEventStore extends EntityRepository implements EventStore
     private function serializer()
     {
         if (null === $this->serializer) {
-            $this->serializer = SerializerBuilder::create()->build();
+            $this->serializer =
+                SerializerBuilder::create()
+                    ->addMetadataDir(__DIR__ . '/../../Infrastructure/Application/Serialization/JMS/Config')
+                    ->setCacheDir(__DIR__ . '/../../../var/cache/jms-serializer')
+                ->build()
+            ;
         }
 
         return $this->serializer;
