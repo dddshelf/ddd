@@ -16,6 +16,10 @@ class AmqpExchangeListenerTest extends PHPUnit_Framework_TestCase
     /** @test */
     public function itShouldListenForIncomingMessagesInAQueue()
     {
+        if (!class_exists('AMQPConnection')) {
+            $this->markTestSkipped('The AMQP extension is not available');
+        }
+        
         $queue = $this->prophesize('AMQPQueue');
 
         $serializer =

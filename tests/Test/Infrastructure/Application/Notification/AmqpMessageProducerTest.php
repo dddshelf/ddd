@@ -31,6 +31,10 @@ class AmqpMessageProducerTest extends PHPUnit_Framework_TestCase
      */
     public function itShouldBeAbleToSendMessagesToAnAmqpExchange()
     {
+        if (!class_exists('AMQPConnection')) {
+            $this->markTestSkipped('The AMQP extension is not available');
+        }
+
         $this->exchange = $this->prophesize('AMQPExchange');
 
         $self = $this;
