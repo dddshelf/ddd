@@ -13,15 +13,22 @@
     "autoload": {
         "psr-4": {"Ddd\\": "src/"}
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Ddd\\": "tests/"
+        }
+    },
     "require": {
-        "jms/serializer": "~1.1"
+        "jms/serializer": "~1.1",
+        "react/event-loop": "^0.4.1"
     },
     "require-dev": {
         "phpunit/phpunit": "4.*"
     },
     "suggest": {
         "doctrine/orm": "It allows Transactional Application Services and/or Domain Events persisted using Doctrine",
-        "videlalvaro/php-amqplib": "It allows Domain Events notification using RabbitMQ"
+        "videlalvaro/php-amqplib": "It allows Domain Events notification using RabbitMQ",
+        "ext/amqp": "It allows the usage of asynchronous messaging producers and message listeners"
     },
     "config": {
         "bin-dir": "bin/",

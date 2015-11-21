@@ -1,0 +1,12 @@
+Ddd\Domain\Event\StoredEvent:
+    exclusion_policy: NONE
+
+    properties:
+        eventBody:
+            type: string
+
+        occurredOn:
+            type: DateTime
+
+        typeName:
+            type: string
