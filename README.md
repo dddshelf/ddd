@@ -147,7 +147,7 @@ As a collateral benefit, the Doctrine Session manages internally the ```flush```
 
 ## Asynchronous AMQP listeners
 
-This library is capable to support asynchronous messaging in order to make Bounded Context capable to listen to other Bounded Context's events in an efficient way. The base for this is the both the **```[amqp](https://pecl.php.net/package/amqp)```** and the **```[react's event loop](https://github.com/reactphp/event-loop)```**. In addition, to support more efficient event loopings, we recommend the installation of one of this extensions
+This library is capable to support asynchronous messaging in order to make Bounded Context capable to listen to other Bounded Context's events in an efficient way. The base for this is the both the **[amqp](https://pecl.php.net/package/amqp)** and the **[react's event loop](https://github.com/reactphp/event-loop)**. In addition, to support more efficient event loopings, we recommend the installation of one of this extensions
 
 * **[libevent](http://php.net/manual/es/book.libevent.php)**
 * **[libev](http://php.net/manual/es/intro.ev.php)**
