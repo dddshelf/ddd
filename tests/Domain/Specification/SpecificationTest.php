@@ -14,8 +14,8 @@ class SpecificationTest extends \PHPUnit_Framework_TestCase
         $trueSpec  = new FakeSpecification(true);
         $falseSpec = new FakeSpecification(false);
 
-        $this->assertTrue($trueSpec->isSatisfiedBy(new \StdClass()));
-        $this->assertFalse($falseSpec->isSatisfiedBy(new \StdClass()));
+        $this->assertTrue($trueSpec->isSatisfiedBy(new \stdClass()));
+        $this->assertFalse($falseSpec->isSatisfiedBy(new \stdClass()));
     }
 
     /**
@@ -29,8 +29,8 @@ class SpecificationTest extends \PHPUnit_Framework_TestCase
         $notTrueSpec  = $trueSpec->not();
         $notFalseSpec = $falseSpec->not();
 
-        $this->assertFalse($notTrueSpec->isSatisfiedBy(new \StdClass()));
-        $this->assertTrue($notFalseSpec->isSatisfiedBy(new \StdClass()));
+        $this->assertFalse($notTrueSpec->isSatisfiedBy(new \stdClass()));
+        $this->assertTrue($notFalseSpec->isSatisfiedBy(new \stdClass()));
     }
 
     /**
@@ -44,8 +44,8 @@ class SpecificationTest extends \PHPUnit_Framework_TestCase
         $trueAndTrueSpec  = $trueSpec->andSpecification($trueSpec);
         $trueAndFalseSpec = $trueSpec->andSpecification($falseSpec);
 
-        $this->assertTrue($trueAndTrueSpec->isSatisfiedBy(new \StdClass()));
-        $this->assertFalse($trueAndFalseSpec->isSatisfiedBy(new \StdClass()));
+        $this->assertTrue($trueAndTrueSpec->isSatisfiedBy(new \stdClass()));
+        $this->assertFalse($trueAndFalseSpec->isSatisfiedBy(new \stdClass()));
     }
 
     /**
@@ -59,7 +59,7 @@ class SpecificationTest extends \PHPUnit_Framework_TestCase
         $trueOrTrueSpec  = $trueSpec->orSpecification($trueSpec);
         $trueOrFalseSpec = $trueSpec->orSpecification($falseSpec);
 
-        $this->assertTrue($trueOrTrueSpec->isSatisfiedBy(new \StdClass()));
-        $this->assertTrue($trueOrFalseSpec->isSatisfiedBy(new \StdClass()));
+        $this->assertTrue($trueOrTrueSpec->isSatisfiedBy(new \stdClass()));
+        $this->assertTrue($trueOrFalseSpec->isSatisfiedBy(new \stdClass()));
     }
 }
