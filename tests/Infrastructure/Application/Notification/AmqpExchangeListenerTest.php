@@ -24,8 +24,8 @@ class AmqpExchangeListenerTest extends PHPUnit_Framework_TestCase
 
         $serializer =
             SerializerBuilder::create()
-                ->setCacheDir(__DIR__ . '/../../../../../var/cache/jms-serializer')
-                ->addMetadataDir(__DIR__ . '/../../../../../src/Infrastructure/Application/Serialization/JMS/Config')
+                ->setCacheDir(__DIR__ . '/../../../../var/cache/jms-serializer')
+                ->addMetadataDir(__DIR__ . '/../../../../src/Infrastructure/Application/Serialization/JMS/Config')
             ->build();
 
         $storedEvent = new StoredEvent(
