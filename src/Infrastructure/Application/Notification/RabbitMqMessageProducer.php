@@ -12,9 +12,9 @@ class RabbitMqMessageProducer extends RabbitMqMessaging implements MessageProduc
      * @param string $notificationMessage
      * @param string $notificationType
      * @param int $notificationId
-     * @param \DateTime $notificationOccurredOn
+     * @param \DateTimeInterface $notificationOccurredOn
      */
-    public function send($exchangeName, $notificationMessage, $notificationType, $notificationId, \DateTime $notificationOccurredOn)
+    public function send($exchangeName, $notificationMessage, $notificationType, $notificationId, \DateTimeInterface $notificationOccurredOn)
     {
         $this->channel($exchangeName)->basic_publish(
             new AMQPMessage(
