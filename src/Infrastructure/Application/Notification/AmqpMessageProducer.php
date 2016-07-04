@@ -36,7 +36,7 @@ class AmqpMessageProducer implements MessageProducer
 
     }
 
-    public function send($exchangeName, $notificationMessage, $notificationType, $notificationId, DateTime $notificationOccurredOn)
+    public function send($exchangeName, $notificationMessage, $notificationType, $notificationId, \DateTimeInterface $notificationOccurredOn)
     {
         $this->exchange->publish(
             $notificationMessage,
