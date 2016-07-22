@@ -5,7 +5,7 @@ namespace Ddd\Domain;
 interface DomainEvent
 {
     /**
-     * @return \DateTime
+     * @return \DateTimeInterface
      */
     public function occurredOn();
 }

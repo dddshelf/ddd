@@ -17,7 +17,7 @@ class StoredEvent implements DomainEvent
     private $eventBody;
 
     /**
-     * @var \DateTime
+     * @var \DateTimeInterface
      */
     private $occurredOn;
 
@@ -28,10 +28,10 @@ class StoredEvent implements DomainEvent
 
     /**
      * @param string $aTypeName
-     * @param \DateTime $anOccurredOn
+     * @param \DateTimeInterface $anOccurredOn
      * @param string $anEventBody
      */
-    public function __construct($aTypeName, \DateTime $anOccurredOn, $anEventBody)
+    public function __construct($aTypeName, \DateTimeInterface $anOccurredOn, $anEventBody)
     {
         $this->eventBody = $anEventBody;
         $this->typeName = $aTypeName;
@@ -63,7 +63,7 @@ class StoredEvent implements DomainEvent
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTimeInterface
      */
     public function occurredOn()
     {
