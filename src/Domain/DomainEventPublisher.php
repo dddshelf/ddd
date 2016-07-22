@@ -44,6 +44,11 @@ class DomainEventPublisher
         return $id;
     }
 
+    public function ofId($id)
+    {
+        return isset($this->subscribers[$id]) ? $this->subscribers[$id] : null;
+    }
+
     public function unsubscribe($id)
     {
         unset($this->subscribers[$id]);
