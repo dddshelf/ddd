@@ -9,26 +9,38 @@ class DomainEventPublisherTest extends \PHPUnit_Framework_TestCase
      */
     public function itShouldNotifySubscriber()
     {
-        $this->subscribe($subscriber = new SpySubscriber('test-event'));
+        $this->subscribe($subscriber = new SpySubscriber());
         $this->publish($domainEvent = new FakeDomainEvent('test-event'));
 
         $this->assertEventHandled($subscriber, $domainEvent);
     }
 
+    /**
+     * @param $subscriber
+     *
+     * @return int
+     */
     private function subscribe($subscriber)
     {
         return DomainEventPublisher::instance()->subscribe($subscriber);
     }
 
-    private function publish($domainEvent)
+    /**
+     * @param DomainEvent $domainEvent
+     */
+    private function publish(DomainEvent $domainEvent)
     {
         DomainEventPublisher::instance()->publish($domainEvent);
     }
 
-    private function assertEventHandled($subscriber, $domainEvent)
+    /**
+     * @param SpySubscriber $subscriber
+     * @param DomainEvent   $domainEvent
+     */
+    private function assertEventHandled(SpySubscriber $subscriber, DomainEvent $domainEvent)
     {
-        $this->assertTrue($subscriber->isHandled);
-        $this->assertEquals($domainEvent, $subscriber->domainEvent);
+        $this->assertTrue(in_array($domainEvent, $subscriber->domainEvents()));
+        $this->assertEquals($domainEvent, $subscriber->mostRecentEvent());
     }
 
     /**
@@ -36,16 +48,19 @@ class DomainEventPublisherTest extends \PHPUnit_Framework_TestCase
      */
     public function notSubscribedSubscribersShouldNotBeNotified()
     {
-        $this->subscribe($subscriber = new SpySubscriber('test-event'));
+        $shouldSubscribeToEvents = false;
+        $this->subscribe($subscriber = new SpySubscriber($shouldSubscribeToEvents));
         $this->publish(new FakeDomainEvent('other-test-event'));
 
         $this->assertEventNotHandled($subscriber);
     }
 
-    private function assertEventNotHandled($subscriber)
+    /**
+     * @param SpySubscriber $subscriber
+     */
+    private function assertEventNotHandled(SpySubscriber $subscriber)
     {
-        $this->assertFalse($subscriber->isHandled);
-        $this->assertNull($subscriber->domainEvent);
+        $this->assertEmpty($subscriber->domainEvents());
     }
 
     /**
@@ -60,34 +75,15 @@ class DomainEventPublisherTest extends \PHPUnit_Framework_TestCase
         $this->assertEventNotHandled($subscriber);
     }
 
+    /**
+     * @param $id
+     */
     private function unsubscribe($id)
     {
         DomainEventPublisher::instance()->unsubscribe($id);
     }
 }
 
-class SpySubscriber implements DomainEventSubscriber
-{
-    public $domainEvent;
-    public $isHandled = false;
-    private $eventName;
-
-    public function __construct($eventName)
-    {
-        $this->eventName = $eventName;
-    }
-
-    public function isSubscribedTo($aDomainEvent)
-    {
-        return $this->eventName === $aDomainEvent->name;
-    }
-
-    public function handle($aDomainEvent)
-    {
-        $this->domainEvent = $aDomainEvent;
-        $this->isHandled = true;
-    }
-}
 
 class FakeDomainEvent implements DomainEvent
 {
