@@ -26,6 +26,8 @@ There are some projects developed using carlosbuenosvinos/ddd library. Check som
 
 Consider an Application Service that registers a new user in your application. 
 
+```php
+<?php
     $signInUserService = new SignInUserService(
         $em->getRepository('MyBC\Domain\Model\User\User')
     );
@@ -39,10 +41,12 @@ Consider an Application Service that registers a new user in your application.
 
     $newUserCreated = $response->getUser();
     //...
+```
 
 We need to pass in the constructor all the dependencies. In this case, the User repository. As DDD explains, the Doctrine repository is implementing a generic interface for User repositories.
 
-    <?php
+```php
+<?php
     
     namespace MyBC\Application\Service\User;
     
@@ -97,9 +101,11 @@ We need to pass in the constructor all the dependencies. In this case, the User 
             return new SignInUserResponse($user);
         }
     }
-
+```
 I suggest to make your Application Services implement the following interface following the command pattern.
 
+```php
+<?php
     /**
      * Interface ApplicationService
      * @package Ddd\Application\Service
@@ -112,7 +118,7 @@ I suggest to make your Application Services implement the following interface fo
          */
         public function execute($request = null);
     }
-
+```
 ## Transactions
 
 Application Services should manage transactions when dealing with database persistence strategies. In order to manage it cleanly, I provide an Application Service decorator that wraps an Application Service an executes it inside a transactional boundary.
@@ -122,7 +128,8 @@ The decorator is the ```Ddd\Application\Service\TransactionalApplicationService`
 ### Doctrine Transactional Application Services
 
 For the Doctrine Transactional Session, pass the EntityManager instance.
-
+```php
+<?php
     /** @var EntityManager $em */
     $txSignInUserService = new TransactionalApplicationService(
         new SignInUserService(
@@ -140,7 +147,7 @@ For the Doctrine Transactional Session, pass the EntityManager instance.
     
     $newUserCreated = $response->getUser();
     //...
-
+```
 As you can see, the use case creation and execution is the same as the non transactional, the only difference is the decoration with the Transactional Application Service.
 
 As a collateral benefit, the Doctrine Session manages internally the ```flush``` method, so you don't need to add a ```flush``` in your Domain neither your infrastructure.
