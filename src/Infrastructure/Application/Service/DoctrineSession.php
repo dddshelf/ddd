@@ -4,6 +4,7 @@ namespace Ddd\Infrastructure\Application\Service;
 
 use Ddd\Application\Service\TransactionalSession;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * Class DoctrineSession
@@ -17,9 +18,9 @@ class DoctrineSession implements TransactionalSession
     private $entityManager;
 
     /**
-     * @param EntityManager $entityManager
+     * @param EntityManagerInterface $entityManager
      */
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
     }
