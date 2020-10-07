@@ -19,7 +19,7 @@
         }
     },
     "require": {
-        "jms/serializer": "~1.1",
+        "jms/serializer": "3.9.0",
         "react/event-loop": "^0.4.1"
     },
     "require-dev": {
